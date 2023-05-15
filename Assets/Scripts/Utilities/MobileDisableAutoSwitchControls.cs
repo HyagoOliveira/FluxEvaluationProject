@@ -9,12 +9,13 @@ For the time-being; this script will disable a PlayerInput's auto switch control
 
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-using UnityEngine.InputSystem;
 #endif
 
-public class MobileDisableAutoSwitchControls : MonoBehaviour
+namespace Flux.EvaluationProject
 {
-    
+    public class MobileDisableAutoSwitchControls : MonoBehaviour
+    {
+
 #if ENABLE_INPUT_SYSTEM && (UNITY_IOS || UNITY_ANDROID) && STARTER_ASSETS_PACKAGES_CHECKED
 
     [Header("Target")]
@@ -31,5 +32,6 @@ public class MobileDisableAutoSwitchControls : MonoBehaviour
     }
 
 #endif
-    
+
+    }
 }

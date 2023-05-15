@@ -1,19 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class ResourcesLoad : MonoBehaviour
+namespace Flux.EvaluationProject
 {
-#if UNITY_EDITOR
-    [SerializeField] private GameObject prefab;
-#endif
-    [SerializeField, HideInInspector] private string path;
-
-    void Awake()
+    public class ResourcesLoad : MonoBehaviour
     {
-        path = prefab.name;
-        if (path != "")
-            Instantiate(Resources.Load(path), transform);
+#if UNITY_EDITOR
+        [SerializeField] private GameObject prefab;
+#endif
+        [SerializeField, HideInInspector] private string path;
+
+        void Awake()
+        {
+            path = prefab.name;
+            if (path != "")
+                Instantiate(Resources.Load(path), transform);
+        }
     }
 }

@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
 
-namespace StarterAssets
+namespace Flux.EvaluationProject
 {
     public class StarterAssetsInputs : MonoBehaviour
     {
@@ -51,7 +50,7 @@ namespace StarterAssets
                 E = true;
             if (Input.GetKeyUp(KeyCode.E) && E)
                 E = false;
-                
+
             buttonX = _gamepad.buttonWest.isPressed || Q;
             buttonY = _gamepad.buttonNorth.isPressed || E;
         }
