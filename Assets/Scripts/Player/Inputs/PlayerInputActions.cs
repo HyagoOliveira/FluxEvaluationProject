@@ -174,7 +174,7 @@ namespace Flux.EvaluationProject
                     ""id"": ""e2f9aa65-db06-4c5b-a2e9-41bc8acb9517"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": ""StickDeadzone"",
+                    ""processors"": ""StickDeadzone(min=0.25,max=1)"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
