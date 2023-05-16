@@ -6,6 +6,7 @@ namespace Flux.EvaluationProject
     /// <summary>
     /// Component responsible to deal with the Player physics using a local <see cref="CharacterController"/>.
     /// </summary>
+    [DefaultExecutionOrder(-1)]
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMotor : MonoBehaviour
     {
