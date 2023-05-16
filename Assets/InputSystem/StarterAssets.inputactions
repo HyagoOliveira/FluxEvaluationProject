@@ -38,7 +38,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Attack1",
+                    "name": "PunchAttack",
                     "type": "Button",
                     "id": "7b21a1c1-f842-4bfa-b33c-07ee96009269",
                     "expectedControlType": "Button",
@@ -238,7 +238,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack1",
+                    "action": "PunchAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -249,7 +249,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack1",
+                    "action": "PunchAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

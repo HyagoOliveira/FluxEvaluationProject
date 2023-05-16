@@ -53,7 +53,7 @@ namespace Flux.EvaluationProject
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Attack1"",
+                    ""name"": ""PunchAttack"",
                     ""type"": ""Button"",
                     ""id"": ""7b21a1c1-f842-4bfa-b33c-07ee96009269"",
                     ""expectedControlType"": ""Button"",
@@ -253,7 +253,7 @@ namespace Flux.EvaluationProject
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack1"",
+                    ""action"": ""PunchAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -264,7 +264,7 @@ namespace Flux.EvaluationProject
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack1"",
+                    ""action"": ""PunchAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -349,7 +349,7 @@ namespace Flux.EvaluationProject
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-            m_Player_Attack1 = m_Player.FindAction("Attack1", throwIfNotFound: true);
+            m_Player_PunchAttack = m_Player.FindAction("PunchAttack", throwIfNotFound: true);
             m_Player_Attack2 = m_Player.FindAction("Attack2", throwIfNotFound: true);
         }
 
@@ -404,7 +404,7 @@ namespace Flux.EvaluationProject
         private readonly InputAction m_Player_Look;
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Sprint;
-        private readonly InputAction m_Player_Attack1;
+        private readonly InputAction m_Player_PunchAttack;
         private readonly InputAction m_Player_Attack2;
         public struct PlayerActions
         {
@@ -414,7 +414,7 @@ namespace Flux.EvaluationProject
             public InputAction @Look => m_Wrapper.m_Player_Look;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
-            public InputAction @Attack1 => m_Wrapper.m_Player_Attack1;
+            public InputAction @PunchAttack => m_Wrapper.m_Player_PunchAttack;
             public InputAction @Attack2 => m_Wrapper.m_Player_Attack2;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
@@ -437,9 +437,9 @@ namespace Flux.EvaluationProject
                     @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                     @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                     @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
-                    @Attack1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack1;
-                    @Attack1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack1;
-                    @Attack1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack1;
+                    @PunchAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPunchAttack;
+                    @PunchAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPunchAttack;
+                    @PunchAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPunchAttack;
                     @Attack2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack2;
                     @Attack2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack2;
                     @Attack2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack2;
@@ -459,9 +459,9 @@ namespace Flux.EvaluationProject
                     @Sprint.started += instance.OnSprint;
                     @Sprint.performed += instance.OnSprint;
                     @Sprint.canceled += instance.OnSprint;
-                    @Attack1.started += instance.OnAttack1;
-                    @Attack1.performed += instance.OnAttack1;
-                    @Attack1.canceled += instance.OnAttack1;
+                    @PunchAttack.started += instance.OnPunchAttack;
+                    @PunchAttack.performed += instance.OnPunchAttack;
+                    @PunchAttack.canceled += instance.OnPunchAttack;
                     @Attack2.started += instance.OnAttack2;
                     @Attack2.performed += instance.OnAttack2;
                     @Attack2.canceled += instance.OnAttack2;
@@ -511,7 +511,7 @@ namespace Flux.EvaluationProject
             void OnLook(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
-            void OnAttack1(InputAction.CallbackContext context);
+            void OnPunchAttack(InputAction.CallbackContext context);
             void OnAttack2(InputAction.CallbackContext context);
         }
     }
