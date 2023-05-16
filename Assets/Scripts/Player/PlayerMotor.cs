@@ -109,6 +109,11 @@ namespace Flux.EvaluationProject
             animator.Jump();
         }
 
+        public void CancelJump()
+        {
+            if (IsRising()) VerticalSpeed = 0f;
+        }
+
         public void Punch()
         {
             if (!CanPunch()) return;
@@ -126,6 +131,9 @@ namespace Flux.EvaluationProject
             OnKick?.Invoke();
             animator.Kick();
         }
+
+        public bool IsRising() => !IsGrounded && VerticalSpeed > 0F;
+        public bool IsFalling() => !IsGrounded && VerticalSpeed < 0F;
 
         private void UpdateMovement()
         {

@@ -29,6 +29,8 @@ namespace Flux.EvaluationProject
             actions.Move.canceled += HandleMoveCanceled;
 
             actions.Jump.started += HandleJumpStarted;
+            actions.Jump.canceled += HandleJumpCanceled;
+
             actions.PunchAttack.started += HandlePunchAttackStarted;
             actions.KickAttack.started += HandleKickAttackStarted;
 
@@ -47,6 +49,8 @@ namespace Flux.EvaluationProject
             actions.Move.canceled -= HandleMoveCanceled;
 
             actions.Jump.started -= HandleJumpStarted;
+            actions.Jump.canceled -= HandleJumpCanceled;
+
             actions.PunchAttack.started -= HandlePunchAttackStarted;
             actions.KickAttack.started -= HandleKickAttackStarted;
 
@@ -60,6 +64,8 @@ namespace Flux.EvaluationProject
             motor.SetMoveInput(Vector2.zero);
 
         private void HandleJumpStarted(InputAction.CallbackContext _) => motor.Jump();
+        private void HandleJumpCanceled(InputAction.CallbackContext _) => motor.CancelJump();
+
         private void HandlePunchAttackStarted(InputAction.CallbackContext _) => motor.Punch();
         private void HandleKickAttackStarted(InputAction.CallbackContext _) => motor.Kick();
 
