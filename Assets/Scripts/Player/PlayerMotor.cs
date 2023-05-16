@@ -59,6 +59,7 @@ namespace Flux.EvaluationProject
         private Transform mainCamera;
         private Vector3 moveDirection;
         private float currentMoveSpeed;
+        private bool isAbleToDoubleJump;
 
         private const float groundedVerticalSpeed = -5F;
 
@@ -106,6 +107,8 @@ namespace Flux.EvaluationProject
         public void Jump()
         {
             if (!CanJump()) return;
+
+            if (IsAirborne) isAbleToDoubleJump = false;
 
             // the square root of H * -2 * G = how much velocity needed to reach desired height
             VerticalSpeed = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -217,11 +220,15 @@ namespace Flux.EvaluationProject
 
         private void Land()
         {
+            isAbleToDoubleJump = true;
             VerticalSpeed = groundedVerticalSpeed;
+
             OnLand?.Invoke();
         }
 
-        private bool CanJump() => IsGrounded;
+        private bool CanJump() => CanGroundJump() || CanDoubleJump();
+        private bool CanGroundJump() => IsGrounded;
+        private bool CanDoubleJump() => IsAirborne && isAbleToDoubleJump;
         private bool CanKick() => IsGrounded && !animator.IsKicking();
         private bool CanPunch() => IsGrounded && !animator.IsPunching();
 
