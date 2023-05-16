@@ -46,7 +46,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Attack2",
+                    "name": "KickAttack",
                     "type": "Button",
                     "id": "e4428144-842b-427a-b01e-e7259a32aa9b",
                     "expectedControlType": "Button",
@@ -260,7 +260,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack2",
+                    "action": "KickAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -271,7 +271,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack2",
+                    "action": "KickAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

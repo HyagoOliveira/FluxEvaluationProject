@@ -61,7 +61,7 @@ namespace Flux.EvaluationProject
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Attack2"",
+                    ""name"": ""KickAttack"",
                     ""type"": ""Button"",
                     ""id"": ""e4428144-842b-427a-b01e-e7259a32aa9b"",
                     ""expectedControlType"": ""Button"",
@@ -275,7 +275,7 @@ namespace Flux.EvaluationProject
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack2"",
+                    ""action"": ""KickAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -286,7 +286,7 @@ namespace Flux.EvaluationProject
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack2"",
+                    ""action"": ""KickAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -350,7 +350,7 @@ namespace Flux.EvaluationProject
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             m_Player_PunchAttack = m_Player.FindAction("PunchAttack", throwIfNotFound: true);
-            m_Player_Attack2 = m_Player.FindAction("Attack2", throwIfNotFound: true);
+            m_Player_KickAttack = m_Player.FindAction("KickAttack", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -405,7 +405,7 @@ namespace Flux.EvaluationProject
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Sprint;
         private readonly InputAction m_Player_PunchAttack;
-        private readonly InputAction m_Player_Attack2;
+        private readonly InputAction m_Player_KickAttack;
         public struct PlayerActions
         {
             private @PlayerInputActions m_Wrapper;
@@ -415,7 +415,7 @@ namespace Flux.EvaluationProject
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
             public InputAction @PunchAttack => m_Wrapper.m_Player_PunchAttack;
-            public InputAction @Attack2 => m_Wrapper.m_Player_Attack2;
+            public InputAction @KickAttack => m_Wrapper.m_Player_KickAttack;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -440,9 +440,9 @@ namespace Flux.EvaluationProject
                     @PunchAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPunchAttack;
                     @PunchAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPunchAttack;
                     @PunchAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPunchAttack;
-                    @Attack2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack2;
-                    @Attack2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack2;
-                    @Attack2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack2;
+                    @KickAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKickAttack;
+                    @KickAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKickAttack;
+                    @KickAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKickAttack;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -462,9 +462,9 @@ namespace Flux.EvaluationProject
                     @PunchAttack.started += instance.OnPunchAttack;
                     @PunchAttack.performed += instance.OnPunchAttack;
                     @PunchAttack.canceled += instance.OnPunchAttack;
-                    @Attack2.started += instance.OnAttack2;
-                    @Attack2.performed += instance.OnAttack2;
-                    @Attack2.canceled += instance.OnAttack2;
+                    @KickAttack.started += instance.OnKickAttack;
+                    @KickAttack.performed += instance.OnKickAttack;
+                    @KickAttack.canceled += instance.OnKickAttack;
                 }
             }
         }
@@ -512,7 +512,7 @@ namespace Flux.EvaluationProject
             void OnJump(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
             void OnPunchAttack(InputAction.CallbackContext context);
-            void OnAttack2(InputAction.CallbackContext context);
+            void OnKickAttack(InputAction.CallbackContext context);
         }
     }
 }
