@@ -13,7 +13,7 @@ All the legacy code was replaced for new scripts.
 
 Bellow you can check all tasks and its commits: 
 
-* Double Jump: [commit](/commit/d98d2713974317bc2df442fbadee2a8645fb1d93)
+* Double Jump: some [changes were added into PlayerMotor](https://github.com/HyagoOliveira/FluxEvaluationProject/commit/d98d2713974317bc2df442fbadee2a8645fb1d93) component.
 * Change Color:
 * Attacks Counter:
 * Bug fixes:
