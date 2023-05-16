@@ -12,14 +12,14 @@ namespace Flux.EvaluationProject
 
         private static readonly int punchId = Animator.StringToHash("Punch");
         private static readonly int kickId = Animator.StringToHash("Kick");
-        private static readonly int speedId = Animator.StringToHash("Speed");
+        private static readonly int normalizedSpeedId = Animator.StringToHash("NormalizedSpeed");
         private static readonly int groundedId = Animator.StringToHash("Grounded");
         private static readonly int jumpId = Animator.StringToHash("Jump");
 
         private void Reset() => animator = GetComponent<Animator>();
 
-        public void SetSpeed(float speed) => animator.SetFloat(speedId, speed);
         public void SetGrounded(bool isGrounded) => animator.SetBool(groundedId, isGrounded);
+        public void SetNormalizedSpeed(float speed) => animator.SetFloat(normalizedSpeedId, speed);
 
         public void Jump() => animator.SetTrigger(jumpId);
         public void Kick() => animator.SetTrigger(kickId);
