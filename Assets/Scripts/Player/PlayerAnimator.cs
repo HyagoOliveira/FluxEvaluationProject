@@ -24,5 +24,14 @@ namespace Flux.EvaluationProject
         public void Jump() => animator.SetTrigger(jumpId);
         public void Kick() => animator.SetTrigger(kickId);
         public void Punch() => animator.SetTrigger(punchId);
+
+        public bool IsKicking() => IsPlaying("BaseLayer.Attacks.Kick");
+        public bool IsPunching() => IsPlaying("BaseLayer.Attacks.Punch");
+
+        private bool IsPlaying(string name)
+        {
+            const int defaultLayerIndex = 0;
+            return animator.GetCurrentAnimatorStateInfo(defaultLayerIndex).IsName(name);
+        }
     }
 }

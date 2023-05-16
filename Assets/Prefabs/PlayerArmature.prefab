@@ -1108,6 +1108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e3d5802ee7e1e4180912bb771ec0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 6950450789770130705}
   controller: {fileID: 4416926081852918491}
   moveSpeed: 2
   sprintSpeed: 6
@@ -1133,7 +1134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6982812146204527121}
-  motor: {fileID: 6923516290058107171}
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0
