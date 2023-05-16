@@ -37,6 +37,7 @@ namespace Flux.EvaluationProject
         public LayerMask groundLayers;
 
         public bool CanMove { get; set; } = true;
+        public bool WasGrounded { get; private set; }
         public bool IsGrounded { get; private set; }
         public bool IsSprinting { get; private set; }
         public bool IsMoveInputting { get; private set; }
@@ -88,6 +89,27 @@ namespace Flux.EvaluationProject
         }
 
         public void StopVelocity() => Velocity = Vector3.zero;
+
+        public void Jump()
+        {
+            if (!IsAbleToJump()) return;
+
+            // the square root of H * -2 * G = how much velocity needed to reach desired height
+            VerticalSpeed = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            animator.Jump();
+        }
+
+        public void Punch()
+        {
+            StopVelocity();
+            animator.Punch();
+        }
+
+        public void Kick()
+        {
+            StopVelocity();
+            animator.Kick();
+        }
 
         private void UpdateMovement()
         {
@@ -141,7 +163,12 @@ namespace Flux.EvaluationProject
         private void UpdateGroundCollision()
         {
             var spherePosition = transform.position + Vector3.down * groundedOffset;
+
+            WasGrounded = IsGrounded;
             IsGrounded = Physics.CheckSphere(spherePosition, groundedRadius, groundLayers, QueryTriggerInteraction.Ignore);
+
+            var hasLanded = !WasGrounded && IsGrounded;
+            if (hasLanded) Land();
         }
 
         private void UpdateAnimator()
@@ -158,25 +185,9 @@ namespace Flux.EvaluationProject
             return (right * MoveInput.x + forward * MoveInput.y).normalized;
         }
 
-        public void Jump()
+        private void Land()
         {
-            if (!IsAbleToJump()) return;
-
-            // the square root of H * -2 * G = how much velocity needed to reach desired height
-            VerticalSpeed = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            animator.Jump();
-        }
-
-        public void Punch()
-        {
-            StopVelocity();
-            animator.Punch();
-        }
-
-        public void Kick()
-        {
-            StopVelocity();
-            animator.Kick();
+            VerticalSpeed = gravity;
         }
 
         private bool IsAbleToJump() => IsGrounded;
