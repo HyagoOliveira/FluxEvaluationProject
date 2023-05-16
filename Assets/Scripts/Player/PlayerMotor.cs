@@ -59,7 +59,7 @@ namespace Flux.EvaluationProject
         private Vector3 moveDirection;
         private float currentMoveSpeed;
 
-        private const float groundedVerticalSpeed = -2F;
+        private const float groundedVerticalSpeed = -5F;
 
         private void Reset()
         {
