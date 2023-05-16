@@ -15,16 +15,13 @@ namespace Flux.EvaluationProject
         private static readonly int speedId = Animator.StringToHash("Speed");
         private static readonly int groundedId = Animator.StringToHash("Grounded");
         private static readonly int jumpId = Animator.StringToHash("Jump");
-        private static readonly int freeFallId = Animator.StringToHash("FreeFall");
         private static readonly int motionSpeedId = Animator.StringToHash("MotionSpeed");
 
         private void Reset() => animator = GetComponent<Animator>();
 
-        public void SetGrounded(bool isGrounded) => animator.SetBool(groundedId, isGrounded);
-        public void SetFreeFall(bool isFreeFall) => animator.SetBool(freeFallId, isFreeFall);
-
         public void SetSpeed(float speed) => animator.SetFloat(speedId, speed);
         public void SetMotionSpeed(float speed) => animator.SetFloat(motionSpeedId, speed);
+        public void SetGrounded(bool isGrounded) => animator.SetBool(groundedId, isGrounded);
 
         public void Jump() => animator.SetTrigger(jumpId);
         public void Kick() => animator.SetTrigger(kickId);
