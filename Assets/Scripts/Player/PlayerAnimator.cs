@@ -20,13 +20,13 @@ namespace Flux.EvaluationProject
 
         private void Reset() => animator = GetComponent<Animator>();
 
-        public void SetJump(bool isJumping) => animator.SetBool(jumpId, isJumping);
         public void SetGrounded(bool isGrounded) => animator.SetBool(groundedId, isGrounded);
         public void SetFreeFall(bool isFreeFall) => animator.SetBool(freeFallId, isFreeFall);
 
         public void SetSpeed(float speed) => animator.SetFloat(speedId, speed);
         public void SetMotionSpeed(float speed) => animator.SetFloat(motionSpeedId, speed);
 
+        public void Jump() => animator.SetTrigger(jumpId);
         public void Kick() => animator.SetTrigger(kickId);
         public void Punch() => animator.SetTrigger(punchId);
     }
