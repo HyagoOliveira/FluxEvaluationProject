@@ -15,10 +15,12 @@ namespace Flux.EvaluationProject
         private static readonly int normalizedSpeedId = Animator.StringToHash("NormalizedSpeed");
         private static readonly int groundedId = Animator.StringToHash("Grounded");
         private static readonly int jumpId = Animator.StringToHash("Jump");
+        private static readonly int hasMoveInputId = Animator.StringToHash("HasMoveInput");
 
         private void Reset() => animator = GetComponent<Animator>();
 
         public void SetGrounded(bool isGrounded) => animator.SetBool(groundedId, isGrounded);
+        public void SetHasMoveInput(bool hasMoveInput) => animator.SetBool(hasMoveInputId, hasMoveInput);
         public void SetNormalizedSpeed(float speed) => animator.SetFloat(normalizedSpeedId, speed);
 
         public void Jump() => animator.SetTrigger(jumpId);
