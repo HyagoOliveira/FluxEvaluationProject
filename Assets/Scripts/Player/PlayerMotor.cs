@@ -7,9 +7,11 @@ namespace Flux.EvaluationProject
     /// Component responsible to deal with the Player physics using a local <see cref="CharacterController"/>.
     /// </summary>
     [DefaultExecutionOrder(-1)]
+    [RequireComponent(typeof(PlayerAnimator))]
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMotor : MonoBehaviour
     {
+        [SerializeField] private PlayerAnimator animator;
         [SerializeField] private CharacterController controller;
 
         [Header("Movement")]
@@ -62,6 +64,8 @@ namespace Flux.EvaluationProject
         private void Reset()
         {
             groundLayers = LayerMask.GetMask("Default");
+
+            animator = GetComponent<PlayerAnimator>();
             controller = GetComponent<CharacterController>();
         }
 
@@ -76,6 +80,7 @@ namespace Flux.EvaluationProject
             UpdateMovement();
             UpdateRotation();
             UpdateGroundCollision();
+            UpdateAnimator();
         }
 
         public void SetSprintInput(bool isSprinting) => IsSprinting = CanMove && isSprinting;
@@ -101,25 +106,22 @@ namespace Flux.EvaluationProject
             // the square root of H * -2 * G = how much velocity needed to reach desired height
             VerticalSpeed = Mathf.Sqrt(jumpHeight * -2f * gravity);
             OnJump?.Invoke();
+            animator.Jump();
         }
 
         public void Punch()
         {
             StopVelocity();
             OnPunch?.Invoke();
+            animator.Punch();
         }
 
         public void Kick()
         {
             StopVelocity();
             OnKick?.Invoke();
+            animator.Kick();
         }
-
-        /// <summary>
-        /// The current normalized speed between 0F -> 1F.
-        /// </summary>
-        /// <returns>A float number between 0F -> 1F.</returns>
-        public float GetNormalizedSpeed() => currentMoveSpeed / sprintSpeed;
 
         private void UpdateMovement()
         {
@@ -183,6 +185,12 @@ namespace Flux.EvaluationProject
             if (hasLanded) Land();
         }
 
+        private void UpdateAnimator()
+        {
+            animator.SetGrounded(IsGrounded);
+            animator.SetNormalizedSpeed(GetNormalizedSpeed());
+        }
+
         private Vector3 GetMoveInputDirectionRelativeToCamera()
         {
             var right = mainCamera.right;
@@ -198,6 +206,8 @@ namespace Flux.EvaluationProject
         }
 
         private bool IsAbleToJump() => IsGrounded;
+
+        private float GetNormalizedSpeed() => currentMoveSpeed / sprintSpeed;
 
         private static float RoundInto3DecimalPlaces(float value) => Mathf.Round(value * 1000f) / 1000f;
     }
