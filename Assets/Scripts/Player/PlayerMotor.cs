@@ -89,6 +89,9 @@ namespace Flux.EvaluationProject
         {
             MoveInput = CanMove ? input : Vector2.zero;
             IsMoveInputting = Mathf.Abs(MoveInput.sqrMagnitude) > 0F;
+
+            var hasMoveInput = Mathf.Abs(input.sqrMagnitude) > 0F;
+            animator.SetHasMoveInput(hasMoveInput);
         }
 
         public void StopMoveInput()
