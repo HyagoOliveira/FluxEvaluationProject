@@ -101,7 +101,7 @@ namespace Flux.EvaluationProject
 
         public void Jump()
         {
-            if (!IsAbleToJump()) return;
+            if (!CanJump()) return;
 
             // the square root of H * -2 * G = how much velocity needed to reach desired height
             VerticalSpeed = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -111,6 +111,8 @@ namespace Flux.EvaluationProject
 
         public void Punch()
         {
+            if (!CanPunch()) return;
+
             StopVelocity();
             OnPunch?.Invoke();
             animator.Punch();
@@ -118,6 +120,8 @@ namespace Flux.EvaluationProject
 
         public void Kick()
         {
+            if (!CanKick()) return;
+
             StopVelocity();
             OnKick?.Invoke();
             animator.Kick();
@@ -205,7 +209,9 @@ namespace Flux.EvaluationProject
             OnLand?.Invoke();
         }
 
-        private bool IsAbleToJump() => IsGrounded;
+        private bool CanJump() => IsGrounded;
+        private bool CanKick() => IsGrounded && !animator.IsKicking();
+        private bool CanPunch() => IsGrounded && !animator.IsPunching();
 
         private float GetNormalizedSpeed() => currentMoveSpeed / sprintSpeed;
 
