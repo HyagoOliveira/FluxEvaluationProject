@@ -46,6 +46,7 @@ namespace Flux.EvaluationProject
         public bool CanMove { get; set; } = true;
         public bool WasGrounded { get; private set; }
         public bool IsGrounded { get; private set; }
+        public bool IsAirborne => !IsGrounded;
         public bool IsSprinting { get; private set; }
         public bool IsMoveInputting { get; private set; }
 
@@ -135,8 +136,8 @@ namespace Flux.EvaluationProject
             animator.Kick();
         }
 
-        public bool IsRising() => !IsGrounded && VerticalSpeed > 0F;
-        public bool IsFalling() => !IsGrounded && VerticalSpeed < 0F;
+        public bool IsRising() => IsAirborne && VerticalSpeed > 0F;
+        public bool IsFalling() => IsAirborne && VerticalSpeed < 0F;
 
         private void UpdateMovement()
         {
