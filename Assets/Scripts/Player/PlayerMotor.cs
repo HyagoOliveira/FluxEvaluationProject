@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Flux.EvaluationProject
@@ -35,6 +36,11 @@ namespace Flux.EvaluationProject
         public float groundedRadius = 0.28f;
         [Tooltip("What layers the character uses as ground")]
         public LayerMask groundLayers;
+
+        public event Action OnJump;
+        public event Action OnLand;
+        public event Action OnPunch;
+        public event Action OnKick;
 
         public bool CanMove { get; set; } = true;
         public bool WasGrounded { get; private set; }
@@ -96,18 +102,21 @@ namespace Flux.EvaluationProject
 
             // the square root of H * -2 * G = how much velocity needed to reach desired height
             VerticalSpeed = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            OnJump?.Invoke();
             animator.Jump();
         }
 
         public void Punch()
         {
             StopVelocity();
+            OnPunch?.Invoke();
             animator.Punch();
         }
 
         public void Kick()
         {
             StopVelocity();
+            OnKick?.Invoke();
             animator.Kick();
         }
 
@@ -188,6 +197,7 @@ namespace Flux.EvaluationProject
         private void Land()
         {
             VerticalSpeed = gravity;
+            OnLand?.Invoke();
         }
 
         private bool IsAbleToJump() => IsGrounded;
