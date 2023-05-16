@@ -26,7 +26,7 @@ namespace Flux.EvaluationProject
         [Tooltip("The height the player can jump"), Min(0f)]
         public float jumpHeight = 1.2f;
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
-        public float gravity = -9.8f;
+        public float gravity = -15f;
 
         [Header("Ground")]
         [Tooltip("Useful for rough ground")]
@@ -49,11 +49,12 @@ namespace Flux.EvaluationProject
 
         private Transform mainCamera;
         private Vector3 moveDirection;
-        private Vector3 currentTurningVelocity;
         private float currentMoveSpeed;
 
         private void Reset()
         {
+            groundLayers = LayerMask.GetMask("Default");
+
             animator = GetComponent<PlayerAnimator>();
             controller = GetComponent<CharacterController>();
         }
