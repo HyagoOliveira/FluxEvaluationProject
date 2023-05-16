@@ -57,6 +57,8 @@ namespace Flux.EvaluationProject
         private Vector3 moveDirection;
         private float currentMoveSpeed;
 
+        private const float groundedVerticalSpeed = -2F;
+
         private void Reset()
         {
             groundLayers = LayerMask.GetMask("Default");
@@ -140,6 +142,8 @@ namespace Flux.EvaluationProject
 
         private void AddGravityIntoVerticalSpeed()
         {
+            if (IsGrounded) return;
+
             const float maxVerticalSpeed = -25F;
             VerticalSpeed += gravity * Time.deltaTime;
             if (VerticalSpeed < maxVerticalSpeed) VerticalSpeed = maxVerticalSpeed;
@@ -189,7 +193,7 @@ namespace Flux.EvaluationProject
 
         private void Land()
         {
-            VerticalSpeed = gravity;
+            VerticalSpeed = groundedVerticalSpeed;
             OnLand?.Invoke();
         }
 
