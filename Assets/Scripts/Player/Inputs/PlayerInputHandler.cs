@@ -7,6 +7,7 @@ namespace Flux.EvaluationProject
     /// <summary>
     /// Component responsible to receive the inputs and forward them into <see cref="PlayerMotor"/>.
     /// </summary>
+    [DefaultExecutionOrder(-1)]
     [RequireComponent(typeof(PlayerMotor))]
     public class PlayerInputHandler : MonoBehaviour
     {
@@ -22,12 +23,14 @@ namespace Flux.EvaluationProject
             actions = input.Player;
         }
 
+        private void Update()
+        {
+            var moveInput = actions.Move.ReadValue<Vector2>();
+            motor.SetMoveInput(moveInput);
+        }
+
         private void OnEnable()
         {
-            actions.Move.started += HandleMovePerformed;
-            actions.Move.performed += HandleMovePerformed;
-            actions.Move.canceled += HandleMoveCanceled;
-
             actions.Jump.started += HandleJumpStarted;
             actions.Jump.canceled += HandleJumpCanceled;
 
@@ -44,10 +47,6 @@ namespace Flux.EvaluationProject
         {
             actions.Disable();
 
-            actions.Move.started -= HandleMovePerformed;
-            actions.Move.performed -= HandleMovePerformed;
-            actions.Move.canceled -= HandleMoveCanceled;
-
             actions.Jump.started -= HandleJumpStarted;
             actions.Jump.canceled -= HandleJumpCanceled;
 
@@ -58,8 +57,6 @@ namespace Flux.EvaluationProject
             actions.Sprint.canceled -= HandleSprintCanceled;
         }
 
-        private void HandleMovePerformed(InputAction.CallbackContext ctx) =>
-            motor.SetMoveInput(ctx.ReadValue<Vector2>());
         private void HandleMoveCanceled(InputAction.CallbackContext _) =>
             motor.SetMoveInput(Vector2.zero);
 
