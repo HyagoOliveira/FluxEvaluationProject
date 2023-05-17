@@ -1,0 +1,18 @@
+{
+    "name": "Flux.EvaluationProject.Editor",
+    "rootNamespace": "Flux.EvaluationProject.Editor",
+    "references": [
+        "GUID:44bf6fe03957f8f4f92cec3c841f9e11"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
