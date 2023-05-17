@@ -10,17 +10,20 @@ namespace Flux.EvaluationProject.Editor
         [MenuItem("Assets/Build AssetBundles")]
         private static void BuildAllAssetBundles()
         {
-            var directory = Path.Combine(Application.dataPath, "..", "AssetBundles");
+            var rootPath = Directory.GetParent(Application.dataPath).ToString();
+            var buildPath = Path.Combine(rootPath, "AssetsBundles");
 
             try
             {
-                if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+                if (!Directory.Exists(buildPath)) Directory.CreateDirectory(buildPath);
 
                 BuildPipeline.BuildAssetBundles(
-                    directory,
+                    buildPath,
                     BuildAssetBundleOptions.None,
                     EditorUserBuildSettings.activeBuildTarget
                 );
+
+                Debug.LogFormat("Assets Bundles created at {0}", buildPath);
             }
             catch (Exception e)
             {
