@@ -8,4 +8,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Playground.unity
     guid: e9017d5f96b9f09489b4b37e1d6eb914
-  m_configObjects: {}
+  m_configObjects:
+    PlayerColorsData: {fileID: 11400000, guid: 27d3665fee213ea4fa2817a0af973e15, type: 2}
