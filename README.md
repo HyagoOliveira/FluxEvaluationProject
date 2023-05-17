@@ -31,9 +31,17 @@ Some small classes were created. Each one has its own single responsibility:
 When the windows is opened, a default *PlayerColorsData* asset is fetched. If none is found, a new one is created and it'll be used for the future openings.
 This custom Window edits the *PlayerColorsData* asset used at runtime to swap colors.
 
-* **Attacks Counter**:
-* **Revert Resources.Load**:
-* **Bug fixes**:
+### Attacks Counter
+
+![Player attacks counter](/Images/PlayerAttacksCounter.gif)
+
+The *PlayerMotor* component has some events that are triggered in some special occasions such as when the Player kicks or punches.
+
+Therefore, the [PlayerAttackCounterManager][6] component was created. Its goal is to listen to the Player `OnKick` and `OnPunch` events, updating the counters UI using a simple animation.
+
+### Revert Resources.Load
+
+### Bug fixes
 
 ---
 
@@ -49,4 +57,4 @@ This custom Window edits the *PlayerColorsData* asset used at runtime to swap co
 [3]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/fc71567e71489abe92b191e7258e79e8d8c53d7d>
 [4]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/bc5af1c4d11c7d6bd39c68504a9bf80dc7402bd8>
 [5]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/07f63ec6d94c29dfb3d452a9f0765e6c1dd53df8>
-[6]: <>
+[6]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/de0472bf8deb2637e244893891ddbf50e557477f>
