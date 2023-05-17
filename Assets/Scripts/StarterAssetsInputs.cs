@@ -1,5 +1,4 @@
 using UnityEngine;
-using Random = UnityEngine.Random;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -16,16 +15,7 @@ namespace Flux.EvaluationProject
         private bool _buttonY;
         private bool Q, E;
 
-        public bool buttonY
-        {
-            get
-            {
-                if (_buttonY && Random.Range(0, 100) > 98)
-                    jump = true;
-                return _buttonY;
-            }
-            set { _buttonY = value; }
-        }
+        public bool buttonY;
 
         [Header("Movement Settings")] public bool analogMovement;
 
