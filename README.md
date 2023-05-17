@@ -13,11 +13,11 @@ All the legacy code was replaced for new scripts.
 
 Bellow you can check all tasks and its details and commits: 
 
-* Double Jump: After the PlayerMotor component was created, only a [few changes were added][1] in order to active the double jump. A possible future feature could be to add multiple jumps in this same component.
-* Change Color:
-* Attacks Counter:
-* Bug fixes:
-* Revert *Resources.Load*:
+* **Double Jump**: After the PlayerMotor component was created, only a [few changes were added][1] in order to active the double jump. A possible future feature could be to add multiple jumps in this same component.
+* **Change Color**:
+* **Attacks Counter**:
+* **Revert Resources.Load**:
+* **Bug fixes**:
 
 ---
 
