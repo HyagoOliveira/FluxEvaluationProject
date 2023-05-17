@@ -2043,6 +2043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6392546784736076633}
   - component: {fileID: 5597113867290821413}
+  - component: {fileID: 4841190245426570831}
   m_Layer: 0
   m_Name: Armature_Mesh
   m_TagString: Untagged
@@ -2186,6 +2187,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000029802322, y: -0.09214255, z: 0.026248664}
     m_Extent: {x: 0.52818465, y: 0.88092995, z: 0.22050178}
   m_DirtyAABB: 0
+--- !u!114 &4841190245426570831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8187455079231382173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbdae1cad519084fb32cd431b14ae84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 5597113867290821413}
+  colors: {fileID: 11400000, guid: 27d3665fee213ea4fa2817a0af973e15, type: 2}
 --- !u!1 &8338988566280778634
 GameObject:
   m_ObjectHideFlags: 0
