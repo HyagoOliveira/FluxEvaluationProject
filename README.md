@@ -43,6 +43,11 @@ Therefore, the [PlayerAttackCounterManager][6] component was created. Its goal i
 
 ### Bug fixes
 
+A lot of bugfixes and improvements were made when replacing the legacy code by new ones. However, some specifics bugfixes were required: 
+
+1. Infinite attack when holding attack button: fixed when improvements were made at StarterAssetsThirdPerson AnimationController on [this commit][8].
+2. Player sometime jumps when kick attack is pressed: fixed by removing `Random.Range` from `buttonY` property at [this commit][7].
+
 ---
 
 **Hyago Oliveira**
@@ -58,3 +63,6 @@ Therefore, the [PlayerAttackCounterManager][6] component was created. Its goal i
 [4]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/bc5af1c4d11c7d6bd39c68504a9bf80dc7402bd8>
 [5]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/07f63ec6d94c29dfb3d452a9f0765e6c1dd53df8>
 [6]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/de0472bf8deb2637e244893891ddbf50e557477f>
+[7]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/9001ea6b1284b31f1fb921bd27fbb1dbbb8e1501>
+[8]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/c64658cd4e76388dd7b81b562c013f478511e4fc>
+[9]: <>
