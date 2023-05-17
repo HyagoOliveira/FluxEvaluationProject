@@ -47,6 +47,7 @@ A lot of bugfixes and improvements were made when replacing the legacy code by n
 
 1. Infinite attack when holding attack button: fixed when improvements were made at StarterAssetsThirdPerson AnimationController on [this commit][8].
 2. Player sometime jumps when kick attack is pressed: fixed by removing `Random.Range` from `buttonY` property at [this commit][7].
+3. Fix ResourcesLoad component: although it is not a required bugfix, [the fix][9] was necessary since it prevented to build the project.
 
 ---
 
@@ -65,4 +66,5 @@ A lot of bugfixes and improvements were made when replacing the legacy code by n
 [6]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/de0472bf8deb2637e244893891ddbf50e557477f>
 [7]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/9001ea6b1284b31f1fb921bd27fbb1dbbb8e1501>
 [8]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/c64658cd4e76388dd7b81b562c013f478511e4fc>
-[9]: <>
+[9]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/91908061a5969d98c61779ead606bb59d007f37b>
+[10]: <>
