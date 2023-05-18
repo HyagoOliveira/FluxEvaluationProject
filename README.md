@@ -41,6 +41,27 @@ Therefore, the [PlayerAttackCounterManager][6] component was created. Its goal i
 
 ### Revert Resources.Load
 
+The Environment should be loaded using AssetBundles. To do this, I chose to use only the AssetBundles build-in package, without Addressables package nor Asset Bundle Browser tool.
+
+My first approach was to load bundles locally using `AssetBundle.LoadFromFileAsync()` function. For this I created the [AssetBundleLocalLoader][16] component.
+
+The problem with this approach is that the bundle files must be in the same machine where the game will run, i.e. the player should download these files beforehand. 
+Alternatively, the bundles files could be inside some special project folder, like the `StreamingAssets`, which would lead to increase the build size.
+
+With that in mind, I chose to download the bundles files remotely from a server at runtime, using the GitHub repository since the files will be stored in the project root folder.
+
+The following steps were necessary:
+
+1. [Moved Environment_Prefab out from Resources folder][10]
+2. [Set an asset bundle name and variant into Environment_Prefab][11]
+3. [Code a Menu Item to build all asset bundles][12]
+4. [Build the bundles into a folder inside the project root][13]
+5. [Create a script to load any remote Asset Bundle using an URL][14]
+
+Since loading any remote asset is an asynchronous operation, a script was necessary in order to activate the Player only when the `Environment_Prefab` was completed loaded.
+
+The [AssetBundleWaiterActivator][15] component was created and attached into the Player prefab. It uses the events inside [AssetBundleRemoteLoader][14] to deactivate the player when the loading process starts and activate it back when the loading process finishes.
+
 ### Bug fixes
 
 A lot of bugfixes and improvements were made when replacing the legacy code by new ones. However, some specifics bugfixes were required: 
@@ -67,4 +88,14 @@ A lot of bugfixes and improvements were made when replacing the legacy code by n
 [7]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/9001ea6b1284b31f1fb921bd27fbb1dbbb8e1501>
 [8]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/c64658cd4e76388dd7b81b562c013f478511e4fc>
 [9]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/91908061a5969d98c61779ead606bb59d007f37b>
-[10]: <>
+[10]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/68e29a1fa4c4838cf349490c8153be756498241e>
+[11]: <https://github.com/HyagoOliveira/FluxEvaluationProject/commit/1584d2445971052d3c018d1ca8dce675db8c74bc>
+[12]: <https://github.com/HyagoOliveira/FluxEvaluationProject/blob/main/Assets/Editor/Scripts/CreateAssetBundles.cs>
+[13]: <https://github.com/HyagoOliveira/FluxEvaluationProject/tree/main/AssetsBundles>
+[14]: <https://github.com/HyagoOliveira/FluxEvaluationProject/blob/main/Assets/Scripts/AssetBundle/AssetBundleRemoteLoader.cs>
+[15]: <https://github.com/HyagoOliveira/FluxEvaluationProject/blob/main/Assets/Scripts/AssetBundle/AssetBundleWaiterActivator.cs>
+[16]: <https://github.com/HyagoOliveira/FluxEvaluationProject/blob/main/Assets/Scripts/AssetBundle/AssetBundleLocalLoader.cs>
+[17]: <>
+[18]: <>
+[19]: <>
+[2]: <>
