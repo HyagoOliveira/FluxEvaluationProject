@@ -5,20 +5,34 @@
 
 ## Summary
 
-This Unity project is for the Gameplay Programmer Evaluation for Flux Games.
+This Unity project is an evaluation for the Gameplay Programmer position at Flux Games.
 
-All the legacy code was replaced for new scripts. Each new class is code-documented for the main public functions and fields/properties.
+All the legacy code was replaced for new scripts. Each one is code-documented for the main public functions and fields/properties.
+
+Also, I did small changes for each commit to better reference those changes.
 
 ## Tasks
 
-Bellow you can check all required tasks and its details and commits: 
+In the next sections you'll check all required tasks and its details and commits.
 
-### Double Jump
+## Use new scripts for the Player
+
+Although not required, I decided to create new scripts for the Player since the given ones were very coupled, confused and hard to work upon.
+
+I created 3 main scripts which encapsulate only one main functionality:
+
+1. [PlayerInputHandler][17]: use the new Input System to receive and process the inputs, forwarding them into `PlayerMotor` actions.
+2. [PlayerMotor][18]: updates the physics (using a local CharacterController) and the `PlayerAnimator` according.
+3. [PlayerAnimator][19]: deal with the Player animations inside the AnimationController asset.
+
+With those scripts, it become easy to change/add new features since each one does only one thing alone, as the Single Responsibility Principle (from SOLID) advise us.
+
+## Double Jump
 
 After the PlayerMotor component was created, only a [few changes were added][1] in order to active the double jump. 
 A possible future feature could be to add multiple jumps in this same component.
 
-### Change Color
+## Change Color Randomly
 
 ![Player using random colors](/Images/PlayerRandomColors.png)
 
@@ -26,20 +40,22 @@ Some small classes were created. Each one has its own single responsibility:
 
 * [PlayerMaterialColors][2]: it's a simple color container for the Player body, arms and legs.
 * [PlayerColorsData][3]: a *ScriptableObject* containing an array of *PlayerMaterialColors*. A public functions is used to get a random Player color set.
-* [PlayerMaterialColorSwapper][4]: component used inside *PlayerArmature* prefab, inside `/Geometry/Armature_Mesh` child. A unique random color for the Player arms, legs and body is selected from the local *PlayerColorsData* field when the game starts.
-* [PlayerColorsDataEditor][5]: editor class responsible for create and display a custom Window. You can open it by selecting `Window/Flux Games/Player Colors`. 
-When the windows is opened, a default *PlayerColorsData* asset is fetched. If none is found, a new one is created and it'll be used for the future openings.
-This custom Window edits the *PlayerColorsData* asset used at runtime to swap colors.
+* [PlayerMaterialColorSwapper][4]: component used inside Player prefab, inside the `/Geometry/Armature_Mesh` child. A unique random color for the Player arms, legs and body is selected from the local *PlayerColorsData* field when the game starts.
+* [PlayerColorsDataEditor][5]: editor class responsible for displaying a custom Window where new colors can be added or edited. You can open it by selecting `Window/Flux Games/Player Colors`.
 
-### Attacks Counter
+When the windows is opened, a default *PlayerColorsData* asset is fetched. If none is found, a new one is created and it'll be used now on.
+
+>**Note**: This custom Window edits the *PlayerColorsData* asset used at runtime to swap colors.
+
+## Attacks Counter
 
 ![Player attacks counter](/Images/PlayerAttacksCounter.gif)
 
 The *PlayerMotor* component has some events that are triggered in some special occasions such as when the Player kicks or punches.
 
-Therefore, the [PlayerAttackCounterManager][6] component was created. Its goal is to listen to the Player `OnKick` and `OnPunch` events, updating the counters UI using a simple animation.
+Therefore, the [PlayerAttackCounterManager][6] component listens to the Player `OnKick` and `OnPunch` events, updating the counters UI using a simple animation.
 
-### Revert Resources.Load
+## Revert Resources.Load
 
 The Environment should be loaded using AssetBundles. To do this, I chose to use only the AssetBundles build-in package, without Addressables package nor Asset Bundle Browser tool.
 
@@ -54,21 +70,21 @@ The following steps were necessary:
 
 1. [Moved Environment_Prefab out from Resources folder][10]
 2. [Set an asset bundle name and variant into Environment_Prefab][11]
-3. [Code a Menu Item to build all asset bundles][12]
-4. [Build the bundles into a folder inside the project root][13]
+3. [Code a simple Menu Item to build all asset bundles][12]
+4. [Build the bundles files into a folder inside the project root][13]
 5. [Create a script to load any remote Asset Bundle using an URL][14]
 
 Since loading any remote asset is an asynchronous operation, a script was necessary in order to activate the Player only when the `Environment_Prefab` was completed loaded.
 
 The [AssetBundleWaiterActivator][15] component was created and attached into the Player prefab. It uses the events inside [AssetBundleRemoteLoader][14] to deactivate the player when the loading process starts and activate it back when the loading process finishes.
 
-### Bug fixes
+## Bug fixes
 
-A lot of bugfixes and improvements were made when replacing the legacy code by new ones. However, some specifics bugfixes were required: 
+A lot of bugfixes and improvements were made when replacing the legacy code. However, some specifics bugfixes were required: 
 
-1. Infinite attack when holding attack button: fixed when improvements were made at StarterAssetsThirdPerson AnimationController on [this commit][8].
-2. Player sometime jumps when kick attack is pressed: fixed by removing `Random.Range` from `buttonY` property at [this commit][7].
-3. Fix ResourcesLoad component: although it is not a required bugfix, [the fix][9] was necessary since it prevented to build the project.
+1. **Infinite attack when holding attack button**: fixed when improvements were made at StarterAssetsThirdPerson AnimationController on [this commit][8].
+2. **Player sometime jumps when kick attack is pressed**: fixed by removing `Random.Range` from `buttonY` property at [this commit][7].
+3. **Fix ResourcesLoad component**: although it is not a required bugfix, [this fix][9] was necessary since it prevented to build the project.
 
 ---
 
@@ -95,7 +111,7 @@ A lot of bugfixes and improvements were made when replacing the legacy code by n
 [14]: <https://github.com/HyagoOliveira/FluxEvaluationProject/blob/main/Assets/Scripts/AssetBundle/AssetBundleRemoteLoader.cs>
 [15]: <https://github.com/HyagoOliveira/FluxEvaluationProject/blob/main/Assets/Scripts/AssetBundle/AssetBundleWaiterActivator.cs>
 [16]: <https://github.com/HyagoOliveira/FluxEvaluationProject/blob/main/Assets/Scripts/AssetBundle/AssetBundleLocalLoader.cs>
-[17]: <>
-[18]: <>
-[19]: <>
+[17]: <https://github.com/HyagoOliveira/FluxEvaluationProject/blob/main/Assets/Scripts/Player/Inputs/PlayerInputHandler.cs>
+[18]: <https://github.com/HyagoOliveira/FluxEvaluationProject/blob/main/Assets/Scripts/Player/PlayerMotor.cs>
+[19]: <https://github.com/HyagoOliveira/FluxEvaluationProject/blob/main/Assets/Scripts/Player/PlayerAnimator.cs>
 [2]: <>
