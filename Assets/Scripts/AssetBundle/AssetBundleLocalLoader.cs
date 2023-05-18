@@ -1,11 +1,10 @@
 using UnityEngine;
-using System;
 using System.IO;
 using System.Collections;
 
 namespace Flux.EvaluationProject
 {
-    public class AssetBundleLocalLoader : MonoBehaviour, IAssetBundleLoader
+    public class AssetBundleLocalLoader : AbstractAssetBundleLoader
     {
         [SerializeField, Tooltip("The path where the local asset bundle is.")]
         private string localPath;
@@ -13,27 +12,9 @@ namespace Flux.EvaluationProject
         private string bundleName;
         [SerializeField, Tooltip("The bundle variant.")]
         private string bundleVariant;
-        [SerializeField, Tooltip("The prefab name inside the asset bundle.")]
-        private string prefabName;
-        [SerializeField, Tooltip("Whether to start to load when game starts.")]
-        private bool loadOnStart = true;
 
-        public event Action OnLoadCompleted;
-
-        private IEnumerator Start()
-        {
-            if (loadOnStart) yield return Load();
-        }
-
-        /// <summary>
-        /// Loads the bundle using the local fields.
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerator Load()
-        {
-            yield return InstantiateAsync(localPath, bundleName, bundleVariant, prefabName, transform);
-            OnLoadCompleted?.Invoke();
-        }
+        protected override IEnumerator InstantiateAsync() =>
+            InstantiateAsync(localPath, bundleName, bundleVariant, prefabName, transform);
 
         /// <summary>
         /// Loads and instantiates a Prefab from a local asset bundle.

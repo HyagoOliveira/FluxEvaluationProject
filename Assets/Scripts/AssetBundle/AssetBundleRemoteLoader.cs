@@ -1,31 +1,16 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
 namespace Flux.EvaluationProject
 {
-    public class AssetBundleRemoteLoader : MonoBehaviour, IAssetBundleLoader
+    public class AssetBundleRemoteLoader : AbstractAssetBundleLoader
     {
         [SerializeField, Tooltip("The URL where asset bundle is.")]
         private string url;
-        [SerializeField, Tooltip("The prefab name inside the asset bundle.")]
-        private string prefabName;
-        [SerializeField, Tooltip("Whether to start to load when game starts.")]
-        private bool loadOnStart = true;
 
-        public event Action OnLoadCompleted;
-
-        private IEnumerator Start()
-        {
-            if (loadOnStart) yield return Load();
-        }
-
-        public IEnumerator Load()
-        {
-            yield return InstantiateAsync(url, prefabName, transform);
-            OnLoadCompleted?.Invoke();
-        }
+        protected override IEnumerator InstantiateAsync() =>
+            InstantiateAsync(url, prefabName, transform);
 
         /// <summary>
         /// Loads and instantiates a Prefab from a remote asset bundle.
