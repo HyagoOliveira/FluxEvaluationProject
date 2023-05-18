@@ -18,7 +18,7 @@ namespace Flux.EvaluationProject
             // PlayerManager.OnReady event where other managers could register listeners
             // as soon as the Player is completely ready.
 
-            player = FindObjectOfType<PlayerMotor>();
+            player = FindObjectOfType<PlayerMotor>(includeInactive: true);
 
             if (player == null) Debug.LogError("Player is not instantiated in Scene.");
         }
