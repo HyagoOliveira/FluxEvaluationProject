@@ -13,7 +13,7 @@ Also, I did small changes for each commit to better reference those changes.
 
 ## Tasks
 
-In the next sections you'll check all required tasks and its details and commits.
+In the next sections you'll check all required and additional tasks, with its details and commits.
 
 ## Use new scripts for the Player
 
@@ -22,10 +22,10 @@ Although not required, I decided to create new scripts for the Player since the 
 I created 3 main scripts which encapsulate only one main functionality:
 
 1. [PlayerInputHandler][17]: use the new Input System to receive and process the inputs, forwarding them into `PlayerMotor` actions.
-2. [PlayerMotor][18]: updates the physics (using a local CharacterController) and the `PlayerAnimator` according with the received inputs.
+2. [PlayerMotor][18]: updates the physics (using a local `CharacterController`) and the `PlayerAnimator` according with the received inputs.
 3. [PlayerAnimator][19]: deal only with the Player animations inside the AnimationController asset.
 
-With those scripts, it become easy to change or add new features since each one does only one thing alone, as the Single Responsibility Principle (from SOLID) advise us.
+With those scripts, it was easy to change or add new features since each one does only one thing alone, as the Single Responsibility Principle (from SOLID) advise us.
 
 ## Double Jump
 
@@ -55,7 +55,7 @@ The *PlayerMotor* component has some events that are triggered in some special o
 
 Therefore, the [PlayerAttackCounterManager][6] component listens to the Player `OnKick` and `OnPunch` events, updating the counters UI using a simple animation.
 
-## Revert Resources.Load
+## Revert Resources.Load into AssetBundles
 
 The Environment should be loaded using AssetBundles. To do this, I chose to use only the AssetBundles build-in package, without Addressables package nor Asset Bundle Browser tool.
 
@@ -88,20 +88,20 @@ A lot of bugfixes and improvements were made when replacing the legacy code. How
 
 ## CI/CD
 
-Continuous Integration and Continuous Delivery are done using [GitHub Actions for Unity](https://github.com/game-ci/unity-actions), provided by the [GameCI](https://game.ci/).
+The game is automatically build using [GitHub Actions for Unity](https://github.com/game-ci/unity-actions), provided by the [GameCI](https://game.ci/).
 
-You can download and play the last Standalone build using [this link][21]
+You can download and play the last Standalone build using [this link][21].
 
 ## Other Improvements
 
-* Added namespace for each scripts
+* Added namespace for each script
 * Added Assembly definition files for Runtime and Editor scripts
 * Standardized both button input names and player actions
 * Improved AnimationControler for the Player
 * Improved Player Punch and Kick animation to increase feedback responsivity
-* Added feature to Cancel jump when button is released
+* Added feature to Cancel jump when the button is released
 * Added a SpriteAtlas on UI images to decrease draw calls
-* Added a Canvas component inside the UI Texts witch frequently changes
+* Added a Canvas component inside the UI Texts to which frequently changes
 
 ---
 
