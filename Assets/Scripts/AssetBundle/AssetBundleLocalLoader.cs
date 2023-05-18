@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace Flux.EvaluationProject
 {
-    public class AssetBundleLocalLoader : MonoBehaviour
+    public class AssetBundleLocalLoader : MonoBehaviour, IAssetBundleLoader
     {
         [SerializeField] private string localPath;
         [SerializeField] private string bundleName;
