@@ -1,7 +1,7 @@
 # Flux Evaluation Project
 
 * Unity version: **2020.3.16**
-* Last Standalone build: [TODO]
+* [Last Standalone build][21]
 
 ## Summary
 
@@ -86,6 +86,12 @@ A lot of bugfixes and improvements were made when replacing the legacy code. How
 2. **Player sometime jumps when kick attack is pressed**: fixed by removing `Random.Range` from `buttonY` property at [this commit][7].
 3. **Fix ResourcesLoad component**: although it is not a required bugfix, [this fix][9] was necessary since it prevented to build the project.
 
+## CI/CD
+
+Continuous Integration and Continuous Delivery are done using [GitHub Actions for Unity](https://github.com/game-ci/unity-actions), provided by the [GameCI](https://game.ci/).
+
+You can download and play the last Standalone build using [this link][21]
+
 ## Other Improvements
 
 * Added namespace for each scripts
@@ -125,4 +131,4 @@ A lot of bugfixes and improvements were made when replacing the legacy code. How
 [17]: <https://github.com/HyagoOliveira/FluxEvaluationProject/blob/main/Assets/Scripts/Player/Inputs/PlayerInputHandler.cs>
 [18]: <https://github.com/HyagoOliveira/FluxEvaluationProject/blob/main/Assets/Scripts/Player/PlayerMotor.cs>
 [19]: <https://github.com/HyagoOliveira/FluxEvaluationProject/blob/main/Assets/Scripts/Player/PlayerAnimator.cs>
-[2]: <>
+[21]: <https://github.com/HyagoOliveira/FluxEvaluationProject/suites/12990044538/artifacts/703025193>
