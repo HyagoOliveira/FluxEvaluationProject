@@ -7,11 +7,16 @@ namespace Flux.EvaluationProject
 {
     public class AssetBundleLocalLoader : MonoBehaviour, IAssetBundleLoader
     {
-        [SerializeField] private string localPath;
-        [SerializeField] private string bundleName;
-        [SerializeField] private string bundleVariant;
-        [SerializeField] private string prefabName;
-        [SerializeField] private bool loadOnStart = true;
+        [SerializeField, Tooltip("The path where the local asset bundle is.")]
+        private string localPath;
+        [SerializeField, Tooltip("The bundle name.")]
+        private string bundleName;
+        [SerializeField, Tooltip("The bundle variant.")]
+        private string bundleVariant;
+        [SerializeField, Tooltip("The prefab name inside the asset bundle.")]
+        private string prefabName;
+        [SerializeField, Tooltip("Whether to start to load when game starts.")]
+        private bool loadOnStart = true;
 
         public event Action OnLoadCompleted;
 
