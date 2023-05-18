@@ -22,10 +22,10 @@ Although not required, I decided to create new scripts for the Player since the 
 I created 3 main scripts which encapsulate only one main functionality:
 
 1. [PlayerInputHandler][17]: use the new Input System to receive and process the inputs, forwarding them into `PlayerMotor` actions.
-2. [PlayerMotor][18]: updates the physics (using a local CharacterController) and the `PlayerAnimator` according.
-3. [PlayerAnimator][19]: deal with the Player animations inside the AnimationController asset.
+2. [PlayerMotor][18]: updates the physics (using a local CharacterController) and the `PlayerAnimator` according with the received inputs.
+3. [PlayerAnimator][19]: deal only with the Player animations inside the AnimationController asset.
 
-With those scripts, it become easy to change/add new features since each one does only one thing alone, as the Single Responsibility Principle (from SOLID) advise us.
+With those scripts, it become easy to change or add new features since each one does only one thing alone, as the Single Responsibility Principle (from SOLID) advise us.
 
 ## Double Jump
 
@@ -85,6 +85,17 @@ A lot of bugfixes and improvements were made when replacing the legacy code. How
 1. **Infinite attack when holding attack button**: fixed when improvements were made at StarterAssetsThirdPerson AnimationController on [this commit][8].
 2. **Player sometime jumps when kick attack is pressed**: fixed by removing `Random.Range` from `buttonY` property at [this commit][7].
 3. **Fix ResourcesLoad component**: although it is not a required bugfix, [this fix][9] was necessary since it prevented to build the project.
+
+## Other Improvements
+
+* Added namespace for each scripts
+* Added Assembly definition files for Runtime and Editor scripts
+* Standardized both button input names and player actions
+* Improved AnimationControler for the Player
+* Improved Player Punch and Kick animation to increase feedback responsivity
+* Added feature to Cancel jump when button is released
+* Added a SpriteAtlas on UI images to decrease draw calls
+* Added a Canvas component inside the UI Texts witch frequently changes
 
 ---
 
