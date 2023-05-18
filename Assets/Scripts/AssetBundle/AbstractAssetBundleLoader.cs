@@ -12,6 +12,11 @@ namespace Flux.EvaluationProject
         protected string prefabName;
 
         /// <summary>
+        /// Event triggered when the Asset Bundle loading process is started.
+        /// </summary>
+        public event Action OnLoadStarted;
+
+        /// <summary>
         /// Event triggered when the Asset Bundle loading process is finished.
         /// </summary>
         public event Action OnLoadCompleted;
@@ -27,6 +32,7 @@ namespace Flux.EvaluationProject
         /// <returns></returns>
         public IEnumerator Load()
         {
+            OnLoadStarted?.Invoke();
             yield return InstantiateAsync();
             OnLoadCompleted?.Invoke();
         }
