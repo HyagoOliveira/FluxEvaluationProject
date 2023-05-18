@@ -1,0 +1,12 @@
+name: Check activation credentials
+on:
+  workflow_dispatch: {}
+jobs:
+  activation:
+    name: Check activation credentials
+    runs-on: ubuntu-latest
+    steps:
+      # Request manual activation file
+      - name: Unity - Activate
+        uses: game-ci/unity-activate@v2.0.0
+      
